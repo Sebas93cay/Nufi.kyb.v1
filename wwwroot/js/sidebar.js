@@ -1,9 +1,14 @@
-/* global bootstrap: false */
-(function () {
-  'use strict'
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-    new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-})()
+const sideBar = document.querySelector('.sidebar');
+const mainContainer = document.querySelector('.main-container');
+const menuButton = document.querySelector('.menu-btn');
+
+menuButton.addEventListener("click", () => {
+  if (sideBar.classList.contains('active')){
+    sideBar.classList.remove('active');
+    mainContainer.classList.remove('active');
+  } else {
+    sideBar.classList.add('active');
+    mainContainer.classList.add('active');
+  }
+})
 
