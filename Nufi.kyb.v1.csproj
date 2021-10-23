@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Nufi.kyb.v1</RootNamespace>
   </PropertyGroup>
+  <Target Name="ScssToCss" BeforeTargets="Build">
+    <Exec Command="mkdir $(ProjectDir)wwwroot\css" Condition="!Exists('$(ProjectDir)wwwroot\css')" />
+    <Exec Command="sass $(ProjectDir)SassStyles\site.scss $(ProjectDir)wwwroot\css\site.css" />
+    <Exec Command="sass $(ProjectDir)SassStyles\sidebar.scss $(ProjectDir)wwwroot\css\sidebar.css" />
+  </Target>
+
+  <ItemGroup>
+    <!-- extends watching group to include *.scss files -->
+	<!--<Watch Include="**/*.scss" />-->
+	<Watch Include="SassStyles/**" />
+  </ItemGroup>
 
 </Project>

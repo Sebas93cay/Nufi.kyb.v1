@@ -1,0 +1,45 @@
+$sideBarSize : 350px;
+
+.menu-btn {
+	height: 50px;
+	width: 50px;
+	border: none;
+	background-color: #fff0;
+}
+
+.menu-btn__icon {
+	font-weight: 500;
+}
+
+.sidebar {
+	position: fixed;
+	margin-left: calc(-1 * $sideBarSize - 50px);
+	transition: 0.4s;
+	height: 100vh;
+  width: $sideBarSize;
+  background-color: white;
+  border-right: 1px solid #9998;
+}
+.main-container {
+	transition: 0.4s;
+}
+.sidebar.active {
+	margin-left: 0;
+}
+.main-container.active {
+	margin-left: $sideBarSize;
+}
+
+@media (max-width: 800px) {
+	.main-container.active {
+		margin-left: 0;
+	}
+}
+
+
+/*sidebar Style*/
+.profile-picture img {
+	object-fit: cover;
+	border-radius: 50%;
+}
+
