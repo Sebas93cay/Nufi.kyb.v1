@@ -1,4 +1,5 @@
 $sideBarSize : 350px;
+$md-breakpoint: 768px;
 
 .menu-btn {
 	height: 50px;
@@ -30,7 +31,7 @@ $sideBarSize : 350px;
 	margin-left: $sideBarSize;
 }
 
-@media (max-width: 800px) {
+@media (max-width: $md-breakpoint) {
 	.main-container.active {
 		margin-left: 0;
 	}

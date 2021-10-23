@@ -31,7 +31,7 @@
   margin-left: 350px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .main-container.active {
     margin-left: 0;
   }
