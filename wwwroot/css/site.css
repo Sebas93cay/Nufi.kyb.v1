@@ -1,46 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-@media (min-width: 576px) {
-	.navbar-expand-sm .navbar-toggler {
-		display: block;
-	}
-}
-
 .wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
 }
 
-.menu-btn {
-	height: 50px;
-	width: 50px;
-	border: none;
-	background-color: #fff0;
-}
-.menu-btn__icon {
-	font-weight: 500;
-}
-
-.sidebar {
-	position: fixed;
-	margin-left: -300px;
-	transition: 0.4s;
-	height: 100vh;
-}
-.main-container {
-	transition: 0.4s;
-}
-.sidebar.active {
-	margin-left: 0;
-}
-.main-container.active {
-	margin-left: 280px;
-}
-
-@media (max-width: 576px) {
-	.main-container.active {
-		margin-left: 0;
-	}
-}
