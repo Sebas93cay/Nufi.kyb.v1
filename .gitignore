@@ -1,3 +1,6 @@
 obj/**
 bin/**
 *.css.map
+.cache/**
+node_modules/**
+wwwroot/dist/**
