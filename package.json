@@ -8,8 +8,8 @@
     "sass": "^1.43.3"
   },
   "scripts": {
-    "build": "parcel build assets/bundle.js --out-dir wwwroot/dist/",
-    "dev": "parcel serve assets/bundle.js --out-dir wwwroot/dist/"
+    "build": "parcel build assets/bundle.js --out-dir wwwroot/",
+    "dev": "parcel serve assets/bundle.js --out-dir wwwroot/"
   },
   "dependencies": {
     "@popperjs/core": "^2.10.2",
