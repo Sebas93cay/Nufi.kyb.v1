@@ -4,3 +4,4 @@ bin/**
 .cache/**
 node_modules/**
 wwwroot/dist/**
+wwwroot/bundle.**

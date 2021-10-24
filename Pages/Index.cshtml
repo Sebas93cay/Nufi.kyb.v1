@@ -1,8 +1,8 @@
 ﻿@page
-@using Nufi.kyb.v1.Components
 @model IndexModel
+@using Nufi.kyb.v1.Components
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Nufi | KYB";
 }
 
 @section sidebar{
@@ -12,7 +12,35 @@
 @section header{
 @(await Html.RenderComponentAsync<Header>(RenderMode.ServerPrerendered))
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container flex-fill d-flex flex-column align-items-center justify-content-center p-5">
+  <h1 class="head-t w-100">Consulta de Empresas</h1>
+  <p class="w-100 mb-4">Búsqueda de antecedentes e información de una empresa</p>
+  <p class="w-100">Inspecciona y valida rápidamente registros públicos en diferentes categorías de manera rápida y segura para personas morales. </p>
+  <div class="row">
+    <div class="col">
+      <div class="container bg-white border p-4">
+        <p class="border-bottom pb-2 fw-bold">Ingresa los siguientes datos para realizar la búsqueda:</p>
+        <form action="/general" id="ConsultaForm">
+          <div class="mb-3 row">
+            @foreach(var field in Model.fields)
+            {
+            <div class="col col-12 col-md-4">
+              <label for="@field.id" class="form-label mb-0 mt-3">@field.label</label>
+              <input type="text" class="form-control" id="@field.id">
+            </div>
+            }
+          </div>
+          <div class="d-flex justify-content-between align-items-center px-3">
+            <p>* Campo Requerido</p>
+            <button type="submit" class="btn btn-primary text-light rounded-pill d-flex">
+              SIGUIENTE
+              <i class="bi bi-caret-right-fill"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+
