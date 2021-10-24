@@ -10,7 +10,7 @@
 	}
 
 @section header{
-@(await Html.RenderComponentAsync<Header>(RenderMode.ServerPrerendered))
+@(await Html.RenderComponentAsync<Header>(RenderMode.Static, new {index="true"}))
 }
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

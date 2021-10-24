@@ -1,0 +1,18 @@
+﻿@page
+@using Nufi.kyb.v1.Components
+@model GeneralModel
+@{
+    ViewData["Title"] = "Información General";
+}
+
+@section sidebar{
+@(await Html.RenderComponentAsync<Sidebar>(RenderMode.ServerPrerendered))
+	}
+
+@section header{
+@(await Html.RenderComponentAsync<Header>(RenderMode.Static, new {index="false"}))
+}
+
+<div class="text-center">
+  <h1 class="display-4">Informacion General</h1>
+</div>
