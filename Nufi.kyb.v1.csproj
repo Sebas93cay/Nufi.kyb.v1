@@ -16,6 +16,7 @@
 	<!--<Watch Include="**/*.scss" />-->
 	<!--<Watch Include="SassStyles/**" />-->
 	<Watch Include="assets/**" />
+	<Watch Include="Pages/**" />
   </ItemGroup>
 
 </Project>

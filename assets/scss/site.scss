@@ -1,6 +1,9 @@
 $primary: #3370fd;
 $light: #fafafa;
 $dark: #08255e;
+$border-radius: 30px;
+$accordion-color: white;
+
 
 $font-family-sans-serif: 'poppins', sans-serif;
 
@@ -26,3 +29,22 @@ $font-family-sans-serif: 'poppins', sans-serif;
 	font-size: x-large;
 	font-weight: 900;
 }
+
+.accordionItem {
+	margin: 15px 0;
+	overflow: hidden;
+	border-radius: 35px !important;
+}
+
+
+.accordion-item:first-of-type .accordion-button,
+.accordion-item:first-of-type,
+.accordion-item:last-of-type .accordion-button.collapsed,
+.accordion-item:last-of-type {
+	border-radius: 0; 
+}
+
+.accordion-button:not(.collapsed) {
+	color: white;
+}
+
