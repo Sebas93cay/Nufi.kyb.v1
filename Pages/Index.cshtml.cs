@@ -6,16 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+using Nufi.kyb.v1.Services;
+using Nufi.kyb.v1.Models;
+
 namespace Nufi.kyb.v1.Pages
 {
 	public class IndexModel: PageModel
 	{
 		private readonly ILogger<IndexModel> _logger;
 		public fieldForm[] fields { get; set; }
+		public ConsumePlanetApi ApiService;
+		public Planet planet { get; set; }
+		//public string planet;
 
-		public IndexModel(ILogger<IndexModel> logger)
+		public IndexModel(ILogger<IndexModel> logger, 
+				ConsumePlanetApi apiService)
 		{
-			_logger = logger;
+			_logger = logger; // things I havent touch
+			ApiService = apiService;
 		}
 
 		public class fieldForm
@@ -36,6 +44,9 @@ namespace Nufi.kyb.v1.Pages
 				new fieldForm("RFC", "RFCField"),
 				new fieldForm("Marca", "MarcaField")
 			};
+			planet = ApiService.GetPlanet().Result;
+			System.Console.WriteLine("El planet es");
+			System.Console.WriteLine(planet);
 		}
 	}
 }
