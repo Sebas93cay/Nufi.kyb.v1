@@ -1,6 +1,5 @@
 // Import styles
 import './scss/site.scss'
-import './scss/sidebar.scss'
 
 // Setup jquery
 import $ from 'jquery'

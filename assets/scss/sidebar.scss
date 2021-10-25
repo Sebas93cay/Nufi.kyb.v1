@@ -1,7 +1,4 @@
-$sideBarSize : 290px;
-$md-breakpoint: 768px;
-$light-blue: #d1dcfe;
-$gray-300: #dee2e6;
+@import 'variables';
 
 
 .menu-btn__icon {
@@ -9,7 +6,7 @@ $gray-300: #dee2e6;
 }
 
 .sidebar {
-	position: fixed;
+	position: fixed!important;
 	margin-left: calc(-1 * $sideBarSize - 50px);
 	transition: 0.4s;
 	height: 100vh;
@@ -34,8 +31,6 @@ $gray-300: #dee2e6;
 
 
 /*Inner sidebar Style*/
-.profile-picture {
-}
 .profile-picture img {
 	object-fit: cover;
 	border-radius: 50%;

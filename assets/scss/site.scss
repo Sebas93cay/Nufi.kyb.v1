@@ -1,20 +1,43 @@
-$primary: #3370fd;
-$light: #fafafa;
-$dark: #08255e;
-$border-radius: 30px;
-$accordion-color: white;
+@import 'variables';
+@import 'sidebar.scss';
 
 
 $font-family-sans-serif: 'poppins', sans-serif;
 
 @import "~bootstrap/scss/bootstrap";
 
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+$all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans, $grays);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+@import "~bootstrap/scss/utilities/api";
+
 .wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
 }
-
 
 
 .menu-btn:active,
@@ -28,6 +51,10 @@ $font-family-sans-serif: 'poppins', sans-serif;
 .head-t {
 	font-size: x-large;
 	font-weight: 900;
+}
+
+.inAccordion {
+	max-width: 1300px;
 }
 
 .accordionItem {
@@ -46,5 +73,27 @@ $font-family-sans-serif: 'poppins', sans-serif;
 
 .accordion-button:not(.collapsed) {
 	color: white;
+}
+
+.generalBody {
+	display: flex;
+	flex-flow: row wrap;
+	//justify-content: space-around;
+}
+.datoGeneral {
+	box-shadow: 15px 15px 30px 10px #1111;
+	border-radius: 10px;
+	width: 95%;
+	margin: 10px 2.5%;
+	padding: 10px;
+}
+@media (min-width: $md-breakpoint) {
+	.datoGeneral {
+		width: 45%;
+	}
+}
+.datoGeneralLabel {
+	color: $gray-500;
+	font-size: 0.7rem;
 }
 
