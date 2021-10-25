@@ -13,12 +13,15 @@
   width: $sideBarSize;
   background-color: white;
 }
+
 .main-container {
 	transition: 0.4s;
 }
+
 .sidebar.active {
 	margin-left: 0;
 }
+
 .main-container.active {
 	margin-left: $sideBarSize;
 }
@@ -28,7 +31,6 @@
 		margin-left: 0;
 	}
 }
-
 
 /*Inner sidebar Style*/
 .profile-picture img {
@@ -45,11 +47,8 @@
 	color: red;
 }
 
-
 //This is a test to try to use images from scss
 .mio {
 	//background: url('../img/lion-profile.jpg');
 	border: 1px solid red;
 }
-
-
