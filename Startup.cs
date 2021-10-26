@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Nufi.kyb.v1.Services;
+
 namespace Nufi.kyb.v1
 {
     public class Startup
@@ -24,6 +26,8 @@ namespace Nufi.kyb.v1
         {
             services.AddRazorPages();
 			services.AddServerSideBlazor();
+			services.AddHttpClient();
+			services.AddTransient<ConsumePlanetApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
