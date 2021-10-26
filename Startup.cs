@@ -28,6 +28,7 @@ namespace Nufi.kyb.v1
 			services.AddServerSideBlazor();
 			services.AddHttpClient();
 			services.AddTransient<ConsumePlanetApi>();
+			services.AddTransient<NufiApiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

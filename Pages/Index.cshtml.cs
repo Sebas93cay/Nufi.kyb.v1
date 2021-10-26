@@ -15,12 +15,11 @@ namespace Nufi.kyb.v1.Pages
 	{
 		private readonly ILogger<IndexModel> _logger;
 		public fieldForm[] fields { get; set; }
-		public ConsumePlanetApi ApiService;
-		public Planet planet { get; set; }
-		//public string planet;
+		public NufiApiService ApiService;
+		public ActaConstitutiva actaConstitutiva { get; set; }
 
 		public IndexModel(ILogger<IndexModel> logger, 
-				ConsumePlanetApi apiService)
+				NufiApiService apiService)
 		{
 			_logger = logger; // things I havent touch
 			ApiService = apiService;
@@ -44,7 +43,7 @@ namespace Nufi.kyb.v1.Pages
 				new fieldForm("RFC", "RFCField"),
 				new fieldForm("Marca", "MarcaField")
 			};
-			planet = apiservice.getplanet().result;
+			actaConstitutiva = ApiService.GetActaConstitutiva("Nufi", "el rfc", "la marca").Result;
 		}
 	}
 }

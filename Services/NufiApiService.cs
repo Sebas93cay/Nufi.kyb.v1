@@ -24,13 +24,22 @@ namespace Nufi.kyb.v1.Services
 		}
 		public IWebHostEnvironment WebHostEnvironment { get; }
 		private readonly IHttpClientFactory _clientFactory;
-		public Planet planet { get; set; }
+		public ActaConstitutiva actaConstitutiva { get; set; }
 
-		public async Task<Planet> GetPlanet()
-		//public async Task<string> GetPlanet()
+		public async Task<ActaConstitutiva> GetActaConstitutiva(
+				string razonSocial,
+				string rfc,
+				string marca)
         {
-			var request = new HttpRequestMessage(HttpMethod.Get,
-					"https://swapi-api.hbtn.io/api/planets/1");
+			var request = new HttpRequestMessage(HttpMethod.Post,
+					"https://stoplight.io/mocks/alfredpianist/kyb-api/23013508/actas_constitutivas/consultar");
+			request.Content = new StringContent(JsonSerializer.Serialize(
+						new Dictionary<string, string>(){
+						{"razon_social", razonSocial},
+						{"rfc", rfc},
+						{"marca", marca}}
+						));
+			request.Content.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 			var client = _clientFactory.CreateClient();
 			client.DefaultRequestHeaders.Accept.Add(
 					new MediaTypeWithQualityHeaderValue("application/json"));
@@ -40,21 +49,13 @@ namespace Nufi.kyb.v1.Services
 			if (response.IsSuccessStatusCode)
 			{
 				var responseStream = await response.Content.ReadAsStreamAsync();
-				planet = await JsonSerializer.DeserializeAsync<Planet>(responseStream);
-				System.Console.WriteLine("success");
-				System.Console.WriteLine(planet.climate);
-				using (var reader = new StreamReader(responseStream, Encoding.UTF8))
-				{
-					planetString = reader.ReadToEnd();
-				}
-				System.Console.WriteLine(planetString);
+				actaConstitutiva = await JsonSerializer.DeserializeAsync<ActaConstitutiva>(responseStream);
 			}
 			else
 			{
-				planet = new Planet();
-				//planet = "";
+				actaConstitutiva = new ActaConstitutiva();
 			}
-			return planet;
+			return actaConstitutiva;
         }
 	}
 }

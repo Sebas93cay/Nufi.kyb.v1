@@ -2,7 +2,7 @@ namespace Nufi.kyb.v1.Models
 {
 	public class ActaConstitutiva
  	{
-		public string public string razon_social { get; set; } 
+		public string razon_social { get; set; } 
 		public string marca { get; set;}
 		public string nacionalidad { get; set;}
 		public string rfc { get; set;}
