@@ -16,6 +16,8 @@ namespace Nufi.kyb.v1.Pages
     	public ActaConstitutiva actaConstitutiva { get; set; }
 		public NufiApiService ApiService;    	
 		public Seccion[] secciones { get; set; }
+		public Dato[] datosGenerales { get; set; }
+		public Dato[] datosDomiciliarios { get; set; }
 
 		public GeneralModel(ILogger<GeneralModel> logger, 
 				NufiApiService apiService)
@@ -49,6 +51,7 @@ namespace Nufi.kyb.v1.Pages
 		{
 			return a + b;
 		}
+
         public async Task OnGet()
         {
 			actaConstitutiva = ApiService.GetActaConstitutiva("Nufi", "el rfc", "la marca").Result;
@@ -83,7 +86,7 @@ namespace Nufi.kyb.v1.Pages
 			secciones = new Seccion[]
 			{
 				new Seccion("Información General", datosGenerales),
-				new Seccion("Información Domiciliaria Fiscal", datosDomiciliarios),	
+				new Seccion("Información Domiciliaria", datosDomiciliarios)
 			};
         }
     }
