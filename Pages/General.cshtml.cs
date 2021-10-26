@@ -3,16 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using Nufi.kyb.v1.Services;
+using Nufi.kyb.v1.Models;
 
 namespace Nufi.kyb.v1.Pages
 {
     public class GeneralModel : PageModel
     {
+		private readonly ILogger<GeneralModel> _logger;    	
+    	public ActaConstitutiva actaConstitutiva { get; set; }
+		public NufiApiService ApiService;    	
 		public Seccion[] secciones { get; set; }
-		public Dato[] datosGenerales { get; set; }
-		public Dato[] datosDomiciliarios { get; set; }
+
+		public GeneralModel(ILogger<GeneralModel> logger, 
+				NufiApiService apiService)
+		{
+			_logger = logger; // things I havent touch
+			ApiService = apiService;
+		}
+
 		public class Seccion
 		{
 			public Seccion (string titulo, Dato[] datos)
@@ -38,45 +49,42 @@ namespace Nufi.kyb.v1.Pages
 		{
 			return a + b;
 		}
-        public static async Task OnGet()
+        public async Task OnGet()
         {
-			string url = "https://stoplight.io/mocks/alfredpianist/kyb-api/23013508/actas_constitutivas/consultar/";
-			using (var client = new HttpClient())
+			actaConstitutiva = ApiService.GetActaConstitutiva("Nufi", "el rfc", "la marca").Result;
+
+			var datosGenerales = new Dato[]
 			{
-				var response = await client.GetAsync(url);
-				var responseString = await response.Content.ReadAsStringAsync();
-			}
-			// datosGenerales = new Dato[]
-			// {
-			// 	new Dato("Razón Social", "Texto Aquí"),
-			// 	new Dato("Marca", "Texto Aquí"),
-			// 	new Dato("Nacionalidad", "Texto Aquí"),
-			// 	new Dato("Registro Federal de Contribuyentes (RFC)", "Texto Aquí"),
-			// 	new Dato("Fecha de Constitución", "Texto Aquí"),
-			// 	new Dato("Número de Escritura Constitutiva", "Texto Aquí"),
-			// 	new Dato("Folio Mercantil", "Texto Aquí"),
-			// 	new Dato("Fecha de inscripción de PRP", "Texto Aquí"),
-			// 	new Dato("Sector", "Texto Aquí"),
-			// 	new Dato("Giro Mercantíl", "Texto Aquí"),
-			// 	new Dato("Objeto Social", "Texto Aquí")
-			// };
-			// datosDomiciliarios = new Dato[]
-			// {
-			// 	new Dato("Calle", "Texto Aquí"),
-			// 	new Dato("Número Exterior", "Texto Aquí"),
-			// 	new Dato("Número Interior", "Texto Aquí"),
-			// 	new Dato("Entre Calles", "Texto Aquí"),
-			// 	new Dato("Colonia", "Texto Aquí"),
-			// 	new Dato("Código Postal", "Texto Aquí"),
-			// 	new Dato("Entidad Federativa / Demarcación", "Texto Aquí"),
-			// 	new Dato("País", "Texto Aquí"),
-			// 	new Dato("Delegación / Municipio", "Texto Aquí"),
-			// };
-			// secciones = new Seccion[]
-			// {
-			// 	new Seccion("Información General", datosGenerales),
-			// 	new Seccion("Información Domiciliaria", datosDomiciliarios)
-			// };
+				new Dato("Razón Social", actaConstitutiva.razon_social),
+				new Dato("Marca", actaConstitutiva.marca),
+				new Dato("Nacionalidad", actaConstitutiva.nacionalidad),
+				new Dato("Registro Federal de Contribuyentes (RFC)", actaConstitutiva.rfc),
+				new Dato("Fecha de Constitución", actaConstitutiva.fecha_constitucion),
+				new Dato("Número de Escritura Constitutiva", actaConstitutiva.numero_escritura.ToString()),
+				new Dato("Folio Mercantil", actaConstitutiva.folio_mercantil.ToString()),
+				new Dato("Fecha de inscripción de PRP", actaConstitutiva.fecha_inscripcion_prp),
+				new Dato("Sector", actaConstitutiva.sector),
+				new Dato("Giro Mercantíl", actaConstitutiva.giro_mercantil),
+				new Dato("Objeto Social", actaConstitutiva.objeto_social)
+			};
+			var datosDomiciliarios = new Dato[]
+			{
+				new Dato("Calle", actaConstitutiva.domicilio_fiscal.calle),
+				new Dato("Número Exterior", actaConstitutiva.domicilio_fiscal.num_ext.ToString()),
+				new Dato("Número Interior", actaConstitutiva.domicilio_fiscal.num_int.ToString()),
+				new Dato("Entre Calles", actaConstitutiva.domicilio_fiscal.entre_calles),
+				new Dato("Colonia", actaConstitutiva.domicilio_fiscal.colonia),
+				new Dato("Código Postal", actaConstitutiva.domicilio_fiscal.codigo_postal.ToString()),
+				new Dato("Entidad Federativa / Demarcación", actaConstitutiva.domicilio_fiscal.entidad_federativa),
+				new Dato("País", actaConstitutiva.domicilio_fiscal.pais),
+				new Dato("Delegación / Municipio", actaConstitutiva.domicilio_fiscal.municipio),
+			};
+
+			secciones = new Seccion[]
+			{
+				new Seccion("Información General", datosGenerales),
+				new Seccion("Información Domiciliaria Fiscal", datosDomiciliarios),	
+			};
         }
     }
 }
