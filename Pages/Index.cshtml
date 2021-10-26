@@ -1,6 +1,6 @@
 ﻿@page
-@model IndexModel
 @using Nufi.kyb.v1.Components
+@model IndexModel
 @{
     ViewData["Title"] = "Nufi | KYB";
 }
@@ -12,6 +12,7 @@
 @section header{
 @(await Html.RenderComponentAsync<Header>(RenderMode.Static, new {index="true"}))
 }
+
 <div class="container flex-fill d-flex flex-column align-items-center justify-content-center p-5">
   <h1 class="head-form w-100">Consulta de Empresas</h1>
   <p class="w-100 mb-4">Búsqueda de antecedentes e información de una empresa</p>
