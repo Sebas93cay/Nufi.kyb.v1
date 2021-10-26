@@ -12,3 +12,4 @@ import 'jquery-validation-unobtrusive'
 
 import './js/site'
 import './js/sidebar'
+import './js/tabs'
