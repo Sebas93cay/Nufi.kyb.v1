@@ -14,9 +14,9 @@ using Nufi.kyb.v1.Models;
 
 namespace Nufi.kyb.v1.Services
 {
-	public class ConsumePlanetApi
+	public class NufiApiService
 	{
-		public ConsumePlanetApi(IWebHostEnvironment webHostEnvironment,
+		public NufiApiService(IWebHostEnvironment webHostEnvironment,
 				IHttpClientFactory clientFactory)
 		{
 			WebHostEnvironment = webHostEnvironment;
@@ -25,7 +25,6 @@ namespace Nufi.kyb.v1.Services
 		public IWebHostEnvironment WebHostEnvironment { get; }
 		private readonly IHttpClientFactory _clientFactory;
 		public Planet planet { get; set; }
-		public string planetString;
 
 		public async Task<Planet> GetPlanet()
 		//public async Task<string> GetPlanet()

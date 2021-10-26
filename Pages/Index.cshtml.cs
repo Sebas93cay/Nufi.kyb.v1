@@ -44,9 +44,7 @@ namespace Nufi.kyb.v1.Pages
 				new fieldForm("RFC", "RFCField"),
 				new fieldForm("Marca", "MarcaField")
 			};
-			planet = ApiService.GetPlanet().Result;
-			System.Console.WriteLine("El planet es");
-			System.Console.WriteLine(planet);
+			planet = apiservice.getplanet().result;
 		}
 	}
 }
